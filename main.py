@@ -29,7 +29,7 @@ def data():
     for data in initial_data:
         porters.insert_one(data)
 
-# Add initial data if not already present
+
 if mongo.db.porters.count_documents({}) == 0:
     data()
 
@@ -92,6 +92,8 @@ def update_porter_by_name(name):
             })
         return jsonify({'message': 'Porter not found'}), 404
     return jsonify({'message': 'No fields to update'}), 400
+
+
 @app.route('/porters/<name>', methods=['DELETE'])
 def delete(name):
     result = mongo.db.porters.delete_one({'name': name})
