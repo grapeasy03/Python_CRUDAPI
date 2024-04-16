@@ -6,7 +6,7 @@ app.config['MONGO_URI'] = 'mongodb://localhost/Hporter'
 mongo = PyMongo(app)
 
 
-initial_data = [
+data = [
     {
         'name': "Harry Potter and the Order of the Phoenix",
         'img': "https://bit.ly/2IcnSwz",
@@ -26,8 +26,8 @@ initial_data = [
 
 def data():
     porters = mongo.db.porters
-    for data in initial_data:
-        porters.insert_one(data)
+    for d in data:
+        porters.insert_one(d)
 
 
 if mongo.db.porters.count_documents({}) == 0:
